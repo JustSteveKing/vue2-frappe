@@ -251,7 +251,6 @@ export default {
     },
 
     updateDebounced() {
-      console.log("updateDebounced",this.updateTimer, this.id)
       if (this.updateTimer) {
         window.clearTimeout(this.updateTimer);
         this.updateTimer = null;
