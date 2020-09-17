@@ -5,8 +5,6 @@
 <script>
 import { Chart } from "frappe-charts/dist/frappe-charts.min.esm";
 
-let updateTimer;
-
 export default {
   props: {
     id: {
@@ -166,6 +164,7 @@ export default {
 
   data() {
     return {
+      updateTimer: null,
       chart: null,
       data: {
         labels: this.labels,
@@ -252,11 +251,12 @@ export default {
     },
 
     updateDebounced() {
-      if (updateTimer) {
-        window.clearTimeout(updateTimer);
-        updateTimer = null;
+      console.log("updateDebounced",this.updateTimer, this.id)
+      if (this.updateTimer) {
+        window.clearTimeout(this.updateTimer);
+        this.updateTimer = null;
       }
-      updateTimer = window.setTimeout(() => {
+      this.updateTimer = window.setTimeout(() => {
         this.update();
       }, 1);
     },
