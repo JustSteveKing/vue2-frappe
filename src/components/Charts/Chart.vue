@@ -177,7 +177,6 @@ export default {
         dataPoints: this.dataPoints,
         start: this.startDate,
         end: this.endDate,
-        countLabel: this.countLabel,
       },
     };
   },
@@ -214,6 +213,7 @@ export default {
 
       const heatMapOptions = {
         data: this.heatmapData,
+        countLabel: this.countLabel,
       };
 
       const chartOptions = {
