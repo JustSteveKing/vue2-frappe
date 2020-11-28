@@ -162,6 +162,16 @@ export default {
         };
       },
     },
+    radius: {
+      required: false,
+      type: Number,
+      default: 0
+    },
+    continuously: {
+      required: false,
+      type: Boolean,
+      default: false
+    }
   },
 
   data() {
@@ -195,6 +205,21 @@ export default {
     yRegions() {
       this.updateDebounced();
     },
+    dataPoints: {
+      handler(val) {
+        this.heatmapData.dataPoints = val;
+        this.updateHeatmap();
+      },
+      deep: true
+    },
+    startDate(val) {
+      this.heatmapData.start = val;
+      this.updateHeatmap();
+    },
+    endDate(val) {
+      this.heatmapData.end = val;
+      this.updateHeatmap();
+    },
   },
 
   mounted() {
@@ -214,6 +239,8 @@ export default {
 
       const heatMapOptions = {
         data: this.heatmapData,
+        radius: this.radius,
+        discreteDomains: this.continuously ? 0 : 1
       };
 
       const chartOptions = {
@@ -273,6 +300,9 @@ export default {
     unbindWindowEvents() {
       this.chart.unbindWindowEvents();
     },
+    updateHeatmap() {
+      if (this.heatmapData.start < this.heatmapData.end) this.chart.update(this.heatmapData);
+    }
   },
 };
 </script>
