@@ -11,6 +11,8 @@
       :startDate="start"
       :endDate="end"
     ></vue-frappe>
+    <!-- You can add continuously as a prop to allow for a continous distribution of heat squares (as on GitHub),
+    rather than showing the month-wise separation. -->
   </div>
 </template>
 

@@ -166,6 +166,11 @@ export default {
       required: false,
       type: Number,
       default: 0
+    },
+    continuously: {
+      required: false,
+      type: Boolean,
+      default: false
     }
   },
 
@@ -225,7 +230,8 @@ export default {
 
       const heatMapOptions = {
         data: this.heatmapData,
-        radius: this.radius
+        radius: this.radius,
+        discreteDomains: this.continuously ? 0 : 1
       };
 
       const chartOptions = {
