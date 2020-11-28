@@ -208,9 +208,18 @@ export default {
     dataPoints: {
       handler(val) {
         this.heatmapData.dataPoints = val;
+        this.updateHeatmap();
       },
       deep: true
-    }
+    },
+    startDate(val) {
+      this.heatmapData.start = val;
+      this.updateHeatmap();
+    },
+    endDate(val) {
+      this.heatmapData.end = val;
+      this.updateHeatmap();
+    },
   },
 
   mounted() {
@@ -291,6 +300,9 @@ export default {
     unbindWindowEvents() {
       this.chart.unbindWindowEvents();
     },
+    updateHeatmap() {
+      if (this.heatmapData.start < this.heatmapData.end) this.chart.update(this.heatmapData);
+    }
   },
 };
 </script>
