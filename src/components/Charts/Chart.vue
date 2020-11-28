@@ -162,6 +162,11 @@ export default {
         };
       },
     },
+    radius: {
+      required: false,
+      type: Number,
+      default: 0
+    }
   },
 
   data() {
@@ -220,6 +225,7 @@ export default {
 
       const heatMapOptions = {
         data: this.heatmapData,
+        radius: this.radius
       };
 
       const chartOptions = {
