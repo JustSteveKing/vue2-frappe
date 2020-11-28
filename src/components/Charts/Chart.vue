@@ -195,6 +195,12 @@ export default {
     yRegions() {
       this.updateDebounced();
     },
+    dataPoints: {
+      handler(val) {
+        this.heatmapData.dataPoints = val;
+      },
+      deep: true
+    }
   },
 
   mounted() {
