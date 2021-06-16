@@ -5,7 +5,7 @@
 <script>
 import { Chart } from "frappe-charts/dist/frappe-charts.min.esm";
 
-let updateTimer;
+let updateTimer = [];
 
 export default {
   props: {
@@ -252,11 +252,11 @@ export default {
     },
 
     updateDebounced() {
-      if (updateTimer) {
-        window.clearTimeout(updateTimer);
-        updateTimer = null;
+      if (updateTimer && updateTimer[this.id]) {
+        window.clearTimeout(updateTimer[this.id]);
+        updateTimer[this.id] = null;
       }
-      updateTimer = window.setTimeout(() => {
+      updateTimer[this.id] = window.setTimeout(() => {
         this.update();
       }, 1);
     },
